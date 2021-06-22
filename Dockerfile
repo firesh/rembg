@@ -1,6 +1,9 @@
-FROM nvidia/cuda
+FROM python:3.8-alpine
 
-RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-pip python3-dev llvm llvm-dev
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
+RUN apk add --no-cache llvm llvm-dev
+RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip3 install rembg
 
 ENTRYPOINT ["rembg"]
