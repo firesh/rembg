@@ -6,5 +6,7 @@ FROM python:3.8-buster
 # RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip install rembg
 
-ENTRYPOINT ["rembg"]
+ADD server.py .
+
+ENTRYPOINT ["python", "server.py"]
 CMD []
